@@ -1,22 +1,22 @@
 #include <stdio.h>
 int main(){
-    //Declaração de variáveis:
+    // Declaração de variáveis:
     char estado1[20], estado2[20];
     char codigo1[4], codigo2[4];
     char cidade1[30], cidade2[30];
     int populacao1, populacao2;
     float areakm1, areakm2;
-    float pib1, pib2;
+    float pib1, pib2, pibCap1, pibCap2, denPop1, denPop2;
     int tour1, tour2;
 
-    //Entrada dos dados (Carta 1):
+    // Entrada dos dados (Carta 1):
     printf("====SUPER  TRUNFO====\n");
     printf("| CADASTRO DA CARTA 1 |\n");
     printf("Digite o NOME DO ESTADO: ");
     fgets(estado1, 20, stdin);
     printf("Digite o CÓDIGO DA CARTA: ");
     scanf("%s", codigo1);
-    getchar(); // Limpa o buffer do teclado e evitar que o fgets seja pulado.
+    getchar(); // Limpa o buffer do teclado e evita que o fgets seja pulado.
     printf("Digite o NOME DA CIDADE: ");
     fgets(cidade1, 30, stdin);
     printf("Digite a POPULAÇÃO: ");
@@ -29,7 +29,7 @@ int main(){
     scanf("%d", &tour1);
     getchar(); // Limpa o buffer do teclado novamente antes de ler a próxima entrada.
 
-    //Entrada dos dados (Carta 2):
+    // Entrada dos dados (Carta 2):
     printf("\n| CADASTRO DA CARTA 2 |\n");
     printf("Digite o NOME DO ESTADO: ");
     fgets(estado2, 20, stdin);
@@ -47,7 +47,13 @@ int main(){
     printf("Digite quantos PONTOS TURÍSTICOS a cidade tem: ");
     scanf("%d", &tour2);
 
-    //Exibição dos dados;
+    // Processamento dos dados:
+    denPop1 = populacao1 / areakm1;
+    pibCap1 = (pib1 * 1000000000) / populacao1;
+    denPop2 = populacao2 / areakm2;
+    pibCap2 = (pib2 * 1000000000) / populacao2;
+
+    // Exibição dos dados;
     printf("======SUPER - TRUNFO======\n");
     printf("|====DADOS DA CARTA 1====|\n");
     printf("ESTADO- %s", estado1);
@@ -55,16 +61,20 @@ int main(){
     printf("CIDADE- %s", cidade1);
     printf("POPULAÇÃO- %d\n", populacao1);
     printf("ÁREA EM KM²- %.2f\n", areakm1);
-    printf("PIB- %.2f\n", pib1);
-    printf("PONTOS TURÍSTICOS- %d\n\n", tour1);
-    
+    printf("PIB- %.2f bilhões de reais\n", pib1);
+    printf("PONTOS TURÍSTICOS- %d\n", tour1);
+    printf("DENSIDADE POPULACIONAL- %.2f hab/km²\n", denPop1);
+    printf("PIB PER CAPITA- %.2f reais\n\n", pibCap1);
+
     printf("|====DADOS DA CARTA 2====|\n");
     printf("ESTADO- %s", estado2);
     printf("CÓDIGO DA CARTA- %s\n", codigo2);
     printf("CIDADE- %s", cidade2);
     printf("POPULAÇÃO- %d\n", populacao2);
     printf("ÁREA EM KM²- %.2f\n", areakm2);
-    printf("PIB- %.2f\n", pib2);
+    printf("PIB- %.2f bilhões de reais\n", pib2);
     printf("PONTOS TURÍSTICOS- %d\n", tour2);
+    printf("DENSIDADE POPULACIONAL- %.2f hab/km²\n", denPop2);
+    printf("PIB PER CAPITA- %.2f reais\n\n", pibCap2);
     return 0;
 }

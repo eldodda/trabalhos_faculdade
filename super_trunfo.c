@@ -17,6 +17,7 @@ int main(){
     printf("| CADASTRO DA CARTA 1 |\n");
     printf("Digite o NOME DO ESTADO: ");
     fgets(estado1, 20, stdin);
+    estado1[strcspn(estado1, "\n")] = 0; // Remove o '\n' que o fgets recebe da entrada.
     printf("Digite o CÓDIGO DA CARTA: ");
     scanf("%s", codigo1);
     getchar(); // Limpa o buffer do teclado e evita que o fgets seja pulado.
@@ -37,6 +38,7 @@ int main(){
     printf("\n| CADASTRO DA CARTA 2 |\n");
     printf("Digite o NOME DO ESTADO: ");
     fgets(estado2, 20, stdin);
+    estado2[strcspn(estado2, "\n")] = 0;
     printf("Digite o CÓDIGO DA CARTA: ");
     scanf("%s", codigo2);
     getchar();
@@ -86,25 +88,15 @@ int main(){
     printf("PIB PER CAPITA- %.2f reais\n", pibCap2);
     printf("SUPER PODER- %.3f\n\n", super2);
 
-    // Processando a comparação dos dados das duas cartas:
-    resPop = populacao1 > populacao2;
-    resArea = areakm1 > areakm2;
-    resPib = pib1 > pib2;
-    resTour = tour1 > tour2;
-    resDenPop = denPop1 < denPop2;
-    resPibCap = pibCap1 > pibCap2;
-    resSuper = super1 > super2;
-
-    //Exibindo a comparação dos dados das duas cartas:
-    printf("======SUPER - TRUNFO======\n");
-    printf("====BATALHA DE CARTAS====\n");
-    printf("1 = VITÓRIA DE %s!! 0 = VITÓRIA DE %s!!\n", cidade1, cidade2);
-    printf("População: %d: \n", resPop);
-    printf("Área em km²: %d\n", resArea);
-    printf("PIB (Produto Interno Bruto): %d\n", resPib);
-    printf("Pontos turísticos: %d\n", resTour);
-    printf("Densidade Populacional: %d\n", resDenPop);
-    printf("PIB per capta: %d\n", resPibCap);
-    printf("Super-Poder: %d\n\n", resSuper);
+    // Estrutura condicional para comparação de um atributo de duas cartas
+    printf("=====COMPARAÇÃO DAS CARTAS======\n");
+    printf("ATRIBUTO: DENSIDADE POPULACIONAL\n");
+    printf("Carta 1 - %s (%s): %.2f hab/km²\n", cidade1, estado1, denPop1);
+    printf("Carta 2 - %s (%s): %.2f hab/km²\n", cidade2, estado2, denPop2);
+    if (denPop1 < denPop2) {
+        printf("Resultado: Carta 1 (%s) venceu!!\n", cidade1);
+    } else {
+        printf("Resultado: Carta 2 (%s) venceu!!\n", cidade2);
+    }
     return 0;
 }

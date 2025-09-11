@@ -1,40 +1,58 @@
 #include <stdio.h>
+void torre_move(int casas){
+    if (casas < 5){             
+        printf("|Direita|\n");
+        torre_move(casas + 1);
+    }
+}
+
+void bispo_move(int casas){
+    if (casas < 5){
+        for (int x = 0; x < 1; x++){        // Loop externo controlando a vertical
+            printf("|Cima|\n");
+            for (int y = 0; y < 1; y++){    // Loop interno controlando a horizontal
+                printf("|Direita|\n");
+            }
+        }
+        bispo_move(casas + 1);
+    }
+}
+
+void rainha_move(int casas){
+    if (casas > 0){
+        printf("|Esquerda|\n");
+        rainha_move(casas - 1);
+    }
+}
+
+void cavalo_move(){
+    for (int x = 0; x < 3; x++){    // Vai contar até 3
+        if (x < 2){
+            printf("|Cima|\n");
+            continue;               // Imprime no 2 e avança para o 3
+        }
+        printf("|Direita|\n");      // No 3 anda para a direita
+        break;                      // E fim
+    }
+}
 int main(){
     printf("|MOVIMENTOS DE XADREZ|\n");
     printf("|====================|\n");
     printf("|Movimento da TORRE: |\n");
-    for (int torre = 0; torre < 5; torre++){  // Torre se move 5 casas à direita
-        printf("|Direita|\n");
-    }
+    torre_move(0);
     
     
     printf("|====================|\n");
     printf("|Movimento do BISPO: |\n");
-    int bispo = 0;
-    while (bispo < 5){             // Bispo se move 5 casas na diagonal cima + direita
-        printf("|Cima + Direita|\n");
-        bispo++;
-    }
+    bispo_move(0);
     
     
     printf("|====================|\n");
     printf("|Movimento da RAINHA:|\n");
-    int rainha = 0;
-    do {
-        printf("|Esquerda|\n");
-        rainha++;
-    } while (rainha < 8);          // Rainha se move 8 casas à esquerda
+    rainha_move(8);
 
-
-    int cavalo2 = 0;
     printf("|====================|\n");
     printf("|Movimento do CAVALO:|\n");
-    for (int cavalo1 = 0; cavalo1 == 0; cavalo1++){
-        while (cavalo2 < 2){       // Cavalo se move 2 casas para baixo...
-            printf("|Baixo|\n");
-            cavalo2++;
-        }        
-        printf("|Esquerda|\n");    // ..e uma casa à esquerda
-    }
+    cavalo_move();
     return 0;
 }
